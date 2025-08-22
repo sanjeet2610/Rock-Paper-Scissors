@@ -6,4 +6,12 @@ function getComputerChoice() {
     else return "scissor";
 }
 
+function getHumanChoice() {
+    let choice = prompt("Enter your choice :");
+    choice = choice.toLowerCase();
+    return choice;
+}
+
 const computerSelection = getComputerChoice();
+const humanSelection = getHumanChoice();
+
