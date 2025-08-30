@@ -6,11 +6,6 @@ function getComputerChoice() {
     else return "scissor";
 }
 
-function getHumanChoice() {
-    let choice = prompt("Enter your choice :");
-    choice = choice.toLowerCase();
-    return choice;
-}
 
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
@@ -40,9 +35,60 @@ function playGame() {
     playRound(humanSelection, computerSelection);
 }
 
-for (let i = 0; i < 5; i++) {
-    playGame();
-}
 
-console.log(`Human Score :${humanScore}`);
-console.log(`Computer Score :${computerScore}`);
+
+
+
+// DOM section
+
+const body = document.querySelector("body");
+
+const rock = document.createElement("button");
+rock.textContent = "rock";
+body.appendChild(rock);
+
+const paper = document.createElement("button");
+paper.textContent = "paper";
+body.appendChild(paper);
+
+const scissor = document.createElement("button");
+scissor.textContent = "scissor";
+body.appendChild(scissor);
+
+// rock.addEventListener("click", () => {
+//     playRound("rock", getComputerChoice());
+// });
+
+// paper.addEventListener("click", () => {
+//     playRound("paper", getComputerChoice());
+// });
+
+// scissor.addEventListener("click", () => {
+//     playRound("scissor", getComputerChoice);
+// });
+
+const div = document.createElement("div");
+div.classList.add("score");
+body.appendChild(div);
+
+body.addEventListener("click", (e) => {
+    let selected = e.target;
+
+    switch (selected.textContent) {
+        case 'rock':
+            playRound("rock", getComputerChoice());
+            break;
+        case 'paper':
+            playRound("paper", getComputerChoice());
+            break;
+        case 'scissor':
+            playRound("scissor", getComputerChoice);
+            break;
+    }
+    div.textContent = `Human Score :${humanScore}` + ` Vs. ` + `Computer Score :${computerScore}`;
+
+    if (humanScore >= 5 || computerScore >= 5) {
+        div.textContent = humanScore > computerScore ? '\n you win' : '\n computer wins'
+    }
+
+});
